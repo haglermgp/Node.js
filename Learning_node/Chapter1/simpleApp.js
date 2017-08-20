@@ -16,4 +16,4 @@ var processPublicTimeline = function (response) {
 for (var i = 0; i < 2000; i++) {
   //make the request, and then en it, to close the connection
   http.request(options, processPublicTimeline).end()
-}
+// }
