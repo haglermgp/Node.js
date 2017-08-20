@@ -3,7 +3,7 @@ var http = require('http')
 //The url we want, plus the path and options we need
 var options = {
   host: 'localhost',
-  port: 8124,
+  port: 8080,
   path: '/?file=secondary',
   mathod: 'GET'
 }
@@ -13,7 +13,7 @@ var processPublicTimeline = function (response) {
   console.log('finished request');
 }
 
-for (var i = 0; i < 2000; i++) {
+for (var i = 0; i < 10; i++) {
   //make the request, and then en it, to close the connection
   http.request(options, processPublicTimeline).end()
 // }

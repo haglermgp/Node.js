@@ -2,11 +2,11 @@ var http = require('http')
 var fs = require ('fs')
 
 //write out numbers
-function writeNumbers(res) {
   var counter = 0;
+function writeNumbers(res) {
 
   //increment global, write to cliente
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 5; i++) {
     counter++
     res.write(counter.toString() + '\n')
   }
