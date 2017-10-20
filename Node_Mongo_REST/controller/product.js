@@ -72,9 +72,9 @@ function deleteProduct (req, res) {
 }
 
 module.exports = {
-  getProduct,
-  getProducts,
-  updateProduct,
-  deleteProduct,
-  saveProduct
+  getProduct : getProduct,
+  getProducts : getProducts,
+  updateProduct : updateProduct,
+  deleteProduct : deleteProduct,
+  saveProduct : saveProduct
 }

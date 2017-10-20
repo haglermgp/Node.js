@@ -6,7 +6,8 @@ const mongoose = require('mongoose')
 const app = require('./app')
 const config = require('./config')
 
-mongoose.connect(config.db, (err, res) => {
+//esta parte useMongoClient ha sido modificada, ver doc de mongo
+mongoose.connect(config.db, {useMongoClient: true}, (err, res) => {
   if (err) {
     return console.log(`Ha ocurrido un error en la coneccion: ${err}`);
   }
