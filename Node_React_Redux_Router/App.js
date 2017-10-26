@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import Helmet from 'react-helmet'
+import style from './homepage.sass'
 
 const Menu = () => (
   <div>
@@ -19,7 +20,7 @@ const Menu = () => (
 )
 
 const Homepage = () => (
-  <div>
+  <div className={style.component}>
     <Helmet
       title='welcome to our Homepage'
     />
@@ -30,15 +31,15 @@ const Homepage = () => (
 
 const About = () => (
   <div>
-    <h1>About</h1>
     <Menu/>
+    <h1>About</h1>
   </div>
 )
 
 const Contact = () => (
   <div>
-    <h1>Contact</h1>
     <Menu/>
+    <h1>Contact</h1>
   </div>
 )
 
@@ -51,12 +52,12 @@ export default class App extends Component {
     return (
       <div>
         <Helmet
-          htmlAttributes={{lang: 'en', amp: undefined}}
+          htmlAttributes={{'lang': 'en', 'amp': ''}}
           titleTemplate='%s | React App'
           titleAttributes={{itemprop: 'name', lang: 'en'}}
           meta={[
             {name: 'description', content: 'Server side rendering example'},
-            {name: 'viewport', content: 'width=devise-width, initial-scale=1'}
+            {name: 'viewport', content: 'width=device-width, initial-scale=1'}
           ]}
         />
         <Switch>

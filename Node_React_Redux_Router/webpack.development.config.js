@@ -26,6 +26,25 @@ module.exports = [
               loader: 'babel-loader'
             }
           ]
+        },
+        {
+          test: /\.sass$/,
+          use: [
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]__[hase:base64:5]'
+              }
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ]
         }
       ]
     }
@@ -53,6 +72,26 @@ module.exports = [
           use: [
             {
               loader: 'babel-loader'
+            }
+          ]
+        },
+        {
+          test: /\.sass$/,
+          use: [
+            {
+              loader: 'isomorphic-style-loader'
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[name]__[local]__[hase:base64:5]',
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader'
             }
           ]
         }

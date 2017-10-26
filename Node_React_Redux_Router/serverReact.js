@@ -17,7 +17,7 @@ export default function serverRenderer({ clientStats, serverStats }) {
 
     res.status(200).send(Template({
       markup: markup,
-      helmet: helmet
+      helmet: helmet,
     }))
   }
 }
