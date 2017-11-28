@@ -19,15 +19,43 @@ const Menu = () => (
   </div>
 )
 
-const Homepage = () => (
-  <div className={style.component}>
-    <Helmet
-      title='welcome to our Homepage'
-    />
-    <Menu/>
-    <h1>Homepage</h1>
-  </div>
-)
+
+
+class Homepage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state={
+      v_response: '',
+      e_handle: ''
+    }
+
+    this.handleResponse = this.handleResponse.bind(this)
+  }
+
+  handleResponse(e) {
+    this.setState({
+      v_response: e.target.value
+    })
+  }
+
+  render() {
+
+    console.log(this.state.e_handle)
+    return (
+      <div className={style.component}>
+        <Helmet
+          title='welcome to our Homepage'
+        />
+        <Menu/>
+        <h1>Homepage</h1>
+
+        <input type='text' value={this.state.v_response} onChange={ (e) => this.handleResponse(e)} />
+      </div>
+    )
+  }
+}
+
 
 const About = () => (
   <div>
