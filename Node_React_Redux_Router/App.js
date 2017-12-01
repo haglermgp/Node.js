@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import style from './homepage.sass'
 
@@ -70,6 +70,42 @@ const Contact = () => (
     <h1>Contact</h1>
   </div>
 )
+const Courses = () => (
+  <div>
+    <Menu/>
+    <h1>Courses</h1>
+  </div>
+)
+
+
+const RedirectWithStatus = ({ from, to, status}) => (
+  <Route render={({ staticContext }) => {
+    // therre is no 'staticContext' on the client, so 
+    // we need to guard against that here
+
+    if (staticContext)
+      staticContext.status = status
+
+    return <Redirect from={ from } to={to} />
+  }}/>
+)
+
+const Status = ({ code, children }) => (
+  <Route render={({ staticContext }) => {
+    if (staticContext)
+      staticContext.status = code
+    return children
+  }}/>
+)
+
+const NotFound = () => (
+  <Status code={404}>
+    <div>
+      <h1>Sorry, can’t find that.</h1>
+    </div>
+  </Status>
+)
+
 
 export default class App extends Component {
   constructor(props){
@@ -92,6 +128,20 @@ export default class App extends Component {
           <Route exact path='/' component={ Homepage } />
           <Route exact path='/about' component={ About } />
           <Route exact path='/contact' component={ Contact } />
+          <Route exact path='/curses' component={ Courses } />
+          <Route component={NotFound}/>
+
+          <RedirectWithStatus 
+            status={301}
+            from='/layout'
+            to='/'
+          />
+          
+          <RedirectWithStatus 
+            status={302}
+            from='/you'
+            to='/contact'
+          />
         </Switch>
       </div>
     )

@@ -6,6 +6,8 @@ import Template from './template'
 import App from './App'
 
 export default function serverRenderer({ clientStats, serverStats }) {
+  console.log('clientStas', clientStats)
+  // console.log('serverStats', serverStats)
   return (req, res, next) => {
     const context = {}
     const markup = ReactDOMServer.renderToString(
@@ -14,11 +16,23 @@ export default function serverRenderer({ clientStats, serverStats }) {
       </StaticRouter>
     )
     const helmet = Helmet.renderStatic()
+    if (context.url) {
+      // Somewhere a '<Redirect>' was rendered
+      res.writeHead(301, {
+        Location: context.url
+      })
+      res.end()
+      // res.redirect(context.status, context.url)
+    } else {
+      // We're good send the response
+      
+      res.status(200).send(Template({
+        markup: markup,
+        helmet: helmet,
+      }))
 
-    res.status(200).send(Template({
-      markup: markup,
-      helmet: helmet,
-    }))
+      res.end()
+    }
   }
 }
 

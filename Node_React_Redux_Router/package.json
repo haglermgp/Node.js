@@ -4,7 +4,9 @@
   "description": "Spa react and node server side rendering",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node development.js",
+    "build": "NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --colors",
+    "prod": "node production.js"
   },
   "author": "",
   "license": "ISC",
