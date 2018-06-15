@@ -1,18 +1,33 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+
 import { StaticRouter } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
+
 import { Helmet } from 'react-helmet'
+
+// our file thar use
 import Template from './template'
-import App from './App'
+import routes from './App'
+// import routes from '../client/routes'
 
 export default function serverRenderer({ clientStats, serverStats }) {
   console.log('clientStas', clientStats)
   // console.log('serverStats', serverStats)
   return (req, res, next) => {
+    const branch = matchRoutes(routes, req.url)
+    const promises = branch.map(({route}) => {
+      let fetchData = route.component.fetchData;
+      return fetchData instanceof Function ? fetchData(store) : Promise.resolve(null)
+    })
+
+    return 
+
     const context = {}
     const markup = ReactDOMServer.renderToString(
       <StaticRouter location={ req.url } context={ context }>
-        <App />
+        {/*<App />*/}
+        {renderRoutes(routes)}
       </StaticRouter>
     )
     const helmet = Helmet.renderStatic()
